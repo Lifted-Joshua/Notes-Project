@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Folders" representedClassName=".Folders" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String"/>
+        <relationship name="myNoteItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NoteItems" inverseName="parentFolder" inverseEntity="NoteItems"/>
+    </entity>
+    <entity name="NoteItems" representedClassName=".NoteItems" syncable="YES" codeGenerationType="class">
+        <attribute name="subText" optional="YES" attributeType="String"/>
+        <attribute name="time" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="myNotes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Notes" inverseName="parentNoteItems" inverseEntity="Notes"/>
+        <relationship name="parentFolder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folders" inverseName="myNoteItems" inverseEntity="Folders"/>
+    </entity>
+    <entity name="Notes" representedClassName="Notes" syncable="YES" codeGenerationType="class">
+        <attribute name="subText" optional="YES" attributeType="String"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="parentNoteItems" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteItems" inverseName="myNotes" inverseEntity="NoteItems"/>
+    </entity>
+</model>

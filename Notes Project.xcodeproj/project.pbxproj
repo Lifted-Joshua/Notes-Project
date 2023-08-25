@@ -7,25 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41224ADC2A8A861E00A98B38 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 41224ADB2A8A861E00A98B38 /* IQKeyboardManagerSwift */; };
+		4132B8CF2A75352B00B88F96 /* NoteItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4132B8CD2A75352B00B88F96 /* NoteItemCell.swift */; };
+		4132B8D02A75352B00B88F96 /* NoteItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4132B8CE2A75352B00B88F96 /* NoteItemCell.xib */; };
+		4161ABB62A7590A200E68CE3 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161ABB52A7590A200E68CE3 /* TabBarViewController.swift */; };
+		4161ABB82A75BF8200E68CE3 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4161ABB72A75BF8200E68CE3 /* NotesViewController.swift */; };
+		41B950CC2A93DDE90029AC66 /* NotesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B950CB2A93DDE90029AC66 /* NotesManager.swift */; };
 		41D7750A2A7171FD0083B171 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D775092A7171FD0083B171 /* AppDelegate.swift */; };
 		41D7750C2A7171FD0083B171 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D7750B2A7171FD0083B171 /* SceneDelegate.swift */; };
-		41D7750E2A7171FD0083B171 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D7750D2A7171FD0083B171 /* ViewController.swift */; };
+		41D7750E2A7171FD0083B171 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D7750D2A7171FD0083B171 /* FoldersViewController.swift */; };
 		41D775112A7171FD0083B171 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41D7750F2A7171FD0083B171 /* Main.storyboard */; };
 		41D775142A7171FD0083B171 /* Notes_Project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41D775122A7171FD0083B171 /* Notes_Project.xcdatamodeld */; };
 		41D775162A7171FE0083B171 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41D775152A7171FE0083B171 /* Assets.xcassets */; };
 		41D775192A7171FE0083B171 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41D775172A7171FE0083B171 /* LaunchScreen.storyboard */; };
+		41D775242A7179680083B171 /* NoteItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D775232A7179680083B171 /* NoteItemViewController.swift */; };
+		41FBEF302A75CBC900341A68 /* NotesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FBEF2F2A75CBC900341A68 /* NotesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4132B8CD2A75352B00B88F96 /* NoteItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteItemCell.swift; sourceTree = "<group>"; };
+		4132B8CE2A75352B00B88F96 /* NoteItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteItemCell.xib; sourceTree = "<group>"; };
+		4161ABB52A7590A200E68CE3 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		4161ABB72A75BF8200E68CE3 /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		41B950CB2A93DDE90029AC66 /* NotesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesManager.swift; sourceTree = "<group>"; };
 		41D775062A7171FD0083B171 /* Notes Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Notes Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41D775092A7171FD0083B171 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41D7750B2A7171FD0083B171 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		41D7750D2A7171FD0083B171 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		41D7750D2A7171FD0083B171 /* FoldersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersViewController.swift; sourceTree = "<group>"; };
 		41D775102A7171FD0083B171 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		41D775132A7171FD0083B171 /* Notes_Project.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notes_Project.xcdatamodel; sourceTree = "<group>"; };
 		41D775152A7171FE0083B171 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41D775182A7171FE0083B171 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41D7751A2A7171FE0083B171 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41D775232A7179680083B171 /* NoteItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteItemViewController.swift; sourceTree = "<group>"; };
+		41FBEF2F2A75CBC900341A68 /* NotesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41224ADC2A8A861E00A98B38 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,14 +76,45 @@
 			children = (
 				41D775092A7171FD0083B171 /* AppDelegate.swift */,
 				41D7750B2A7171FD0083B171 /* SceneDelegate.swift */,
-				41D7750D2A7171FD0083B171 /* ViewController.swift */,
-				41D7750F2A7171FD0083B171 /* Main.storyboard */,
+				41D775222A71774F0083B171 /* Models */,
+				41D775202A7177290083B171 /* View */,
+				41D775212A7177380083B171 /* Controllers */,
 				41D775152A7171FE0083B171 /* Assets.xcassets */,
 				41D775172A7171FE0083B171 /* LaunchScreen.storyboard */,
 				41D7751A2A7171FE0083B171 /* Info.plist */,
-				41D775122A7171FD0083B171 /* Notes_Project.xcdatamodeld */,
 			);
 			path = "Notes Project";
+			sourceTree = "<group>";
+		};
+		41D775202A7177290083B171 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				41D7750F2A7171FD0083B171 /* Main.storyboard */,
+				4132B8CD2A75352B00B88F96 /* NoteItemCell.swift */,
+				4132B8CE2A75352B00B88F96 /* NoteItemCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		41D775212A7177380083B171 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				41D7750D2A7171FD0083B171 /* FoldersViewController.swift */,
+				41D775232A7179680083B171 /* NoteItemViewController.swift */,
+				4161ABB52A7590A200E68CE3 /* TabBarViewController.swift */,
+				4161ABB72A75BF8200E68CE3 /* NotesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		41D775222A71774F0083B171 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				41D775122A7171FD0083B171 /* Notes_Project.xcdatamodeld */,
+				41FBEF2F2A75CBC900341A68 /* NotesModel.swift */,
+				41B950CB2A93DDE90029AC66 /* NotesManager.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,6 +133,9 @@
 			dependencies = (
 			);
 			name = "Notes Project";
+			packageProductDependencies = (
+				41224ADB2A8A861E00A98B38 /* IQKeyboardManagerSwift */,
+			);
 			productName = "Notes Project";
 			productReference = 41D775062A7171FD0083B171 /* Notes Project.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +164,9 @@
 				Base,
 			);
 			mainGroup = 41D774FD2A7171FD0083B171;
+			packageReferences = (
+				41224ADA2A8A861D00A98B38 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
 			productRefGroup = 41D775072A7171FD0083B171 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -130,6 +183,7 @@
 			files = (
 				41D775192A7171FE0083B171 /* LaunchScreen.storyboard in Resources */,
 				41D775162A7171FE0083B171 /* Assets.xcassets in Resources */,
+				4132B8D02A75352B00B88F96 /* NoteItemCell.xib in Resources */,
 				41D775112A7171FD0083B171 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,10 +195,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41D7750E2A7171FD0083B171 /* ViewController.swift in Sources */,
+				41D7750E2A7171FD0083B171 /* FoldersViewController.swift in Sources */,
+				41B950CC2A93DDE90029AC66 /* NotesManager.swift in Sources */,
 				41D775142A7171FD0083B171 /* Notes_Project.xcdatamodeld in Sources */,
+				4132B8CF2A75352B00B88F96 /* NoteItemCell.swift in Sources */,
 				41D7750A2A7171FD0083B171 /* AppDelegate.swift in Sources */,
+				4161ABB82A75BF8200E68CE3 /* NotesViewController.swift in Sources */,
+				4161ABB62A7590A200E68CE3 /* TabBarViewController.swift in Sources */,
 				41D7750C2A7171FD0083B171 /* SceneDelegate.swift in Sources */,
+				41D775242A7179680083B171 /* NoteItemViewController.swift in Sources */,
+				41FBEF302A75CBC900341A68 /* NotesModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +359,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -327,6 +388,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -362,6 +424,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		41224ADA2A8A861D00A98B38 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		41224ADB2A8A861E00A98B38 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 41224ADA2A8A861D00A98B38 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		41D775122A7171FD0083B171 /* Notes_Project.xcdatamodeld */ = {

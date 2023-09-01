@@ -11,14 +11,13 @@ import CoreData
 
 protocol NotesViewControllerDelegate: AnyObject {
     func didUpdateData(notesModel: NotesModel)
+    func updatedNotes(index: Int, title: String, subText: String, date: String)
 }
 
 
-class NotesViewController: UIViewController, UITextViewDelegate{
+class NotesViewController: UIViewController, UITextViewDelegate {
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        loadItems()
-//    }
+
     
     var NoteItemSelectedCategory : NoteItems? {
         didSet {
@@ -27,9 +26,17 @@ class NotesViewController: UIViewController, UITextViewDelegate{
         }
     }
     
+    
+    var NoteItemIndex: Int? {
+        didSet {
+            print(NoteItemIndex!)
+        }
+    }
+    
 
     var notesArray = [Notes]()
     weak var delegate: NotesViewControllerDelegate?
+    var notesVcIndexPath : Int = 0
    
     
     
@@ -49,12 +56,9 @@ class NotesViewController: UIViewController, UITextViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !notesArray.isEmpty {
-                let firstNote = notesArray[0] // You can choose a specific note here
-                
-                titleLabel.text = firstNote.title
-                textViewText.text = firstNote.subText
-        }
+        
+        
+        
         
 //        DispatchQueue.main.async {
 //            self.titleLabel.text = self.notesArray[self.count].title
@@ -90,9 +94,7 @@ class NotesViewController: UIViewController, UITextViewDelegate{
         
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        //loadItems()
-//    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         titleLabel.becomeFirstResponder()
@@ -141,9 +143,18 @@ class NotesViewController: UIViewController, UITextViewDelegate{
             
             saveItems()
             
+            if NoteItemIndex == nil {
+                print("NoteItemIndex is nil")
+            } else {
+                updateNoteAtIndex(newTitle: titleLabelText! , newSubText: noteText!, newDate: currentDate)
+            }
+            
         }
         
         else {
+            
+//            print(titleLabelText!)
+//            print(noteText!)
             
             //Saving title&text into coreData
             let newNotes = Notes(context: context)
@@ -152,10 +163,21 @@ class NotesViewController: UIViewController, UITextViewDelegate{
             newNotes.time = currentDate
             newNotes.parentNoteItems = NoteItemSelectedCategory
             
-            let notesModel = NotesModel(title: titleLabel.text, date: currentDate, subText: textViewText.text)
+            
+            let notesModel = NotesModel(title: titleLabelText!, date: currentDate, subText: noteText!)
             delegate?.didUpdateData(notesModel: notesModel)
             
+            
+            
             saveItems()
+            
+            if NoteItemIndex == nil {
+                print("NoteItemIndex is nil")
+            } else {
+                updateNoteAtIndex(newTitle: titleLabelText! , newSubText: noteText!, newDate: currentDate)
+            }
+            
+            
 
         }
     }
@@ -165,24 +187,71 @@ class NotesViewController: UIViewController, UITextViewDelegate{
     func saveItems() {
         do {
             try context.save()
-            print("NotesViewController")
+            //print("NotesViewController data successfully saved")
         } catch {
             print("There was an error saving your data \(error)")
         }
     }
     
     func loadItems() {
+        let title = (NoteItemSelectedCategory?.title! ?? "No title").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         let request: NSFetchRequest<Notes> = Notes.fetchRequest()
         
-        let predicate = NSPredicate(format: "parentNoteItems.title MATCHES %@", NoteItemSelectedCategory!.title!)
+        let predicate = NSPredicate(format: "parentNoteItems.title == %@", title)
         request.predicate = predicate
         
+
         do {
+            
             notesArray = try context.fetch(request)//we have to speak to the context before we can access the persistent contiainer
+            //print("Notes data was successfully retrieved")
+            
+            
+            //print("\nNumber of notes in notesArray: \(notesArray.count)")
+            
+            populateTextViews()
         } catch {
             print("Error fetching your data from context \(error)")
         }
+
+   }
+    
+    // Assuming you have an NSManagedObject subclass named "Note" and an attribute named "title"
+
+    func updateNoteAtIndex(newTitle: String, newSubText: String, newDate: String) {
         
+        notesArray[NoteItemIndex!].title = newTitle
+        notesArray[NoteItemIndex!].subText = newSubText
+        notesArray[NoteItemIndex!].time = newDate
+        
+//        print(newTitle)
+//        print(newSubText)
+//        print(newDate)
+        
+        //delegate?.updatedNotes(index: 5, title: "NewTitle", subText: "newSubText", date: "newDate")
+        
+        saveItems()
+        
+        
+        
+        
+            
+    }
+
+    
+    func populateTextViews() {
+        if !notesArray.isEmpty {
+            //print(NoteItemIndex!)
+            let firstNote = notesArray[NoteItemIndex!] // You can choose a specific note here
+
+//            print(firstNote.title!)
+//            print(firstNote.subText!)
+
+            DispatchQueue.main.async {
+                self.titleLabel.text = firstNote.title
+                self.textViewText.text = firstNote.subText
+            }
+        }
     }
     
 

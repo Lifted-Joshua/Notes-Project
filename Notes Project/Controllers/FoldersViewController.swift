@@ -36,6 +36,7 @@ class FoldersViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {//This creates a cell for each row
         
+        print(foldersArray[indexPath.row])
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell", for: indexPath)
         
@@ -59,7 +60,7 @@ class FoldersViewController: UITableViewController {
         
         FolderName = foldersArray[indexPath.row].name!
         
-        tableView.deselectRow(at: indexPath, animated: true)
+        //tableView.deselectRow(at: indexPath, animated: true)
         
         performSegue(withIdentifier: "FolderPressed", sender: self)
     }
@@ -118,11 +119,12 @@ class FoldersViewController: UITableViewController {
     //MARK: - Perform Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FolderPressed" {
+            //print("Going to NoteItemsViewController")
             if let destinationVC = segue.destination as? NoteItemViewController {
                 destinationVC.UpdateTitle(FolderName: FolderName)
-                if let indexPath = tableView.indexPathForSelectedRow {
+                if let indexPath = self.tableView.indexPathForSelectedRow {
+                    //print("This is the indexPath \(indexPath)")
                     destinationVC.selectedCategory = foldersArray[indexPath.row]
-                    print(foldersArray[indexPath.row])
                 }
             }
         }

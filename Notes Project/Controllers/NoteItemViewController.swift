@@ -17,6 +17,8 @@ class NoteItemViewController: UIViewController,UITableViewDelegate, UITableViewD
     
     var notesItemsArray = [NoteItems]()
     
+    var notesITEMS = [Notes]()
+    
     
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -40,6 +42,7 @@ class NoteItemViewController: UIViewController,UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi));
         
         tableView.register(UINib(nibName: "NoteItemCell", bundle: nil), forCellReuseIdentifier: "Reusable Cell")//Here we are registering our NoteItemCell
         
@@ -66,7 +69,6 @@ class NoteItemViewController: UIViewController,UITableViewDelegate, UITableViewD
 
     // MARK: - Table view data source
 
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notesItemsArray.count
     }
@@ -74,9 +76,13 @@ class NoteItemViewController: UIViewController,UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Reusable Cell", for: indexPath) as! NoteItemCell
+        //cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
         
         let notesModel = notesItemsArray[indexPath.row]
+        
+        
         cell.cellTitleLabel.text = notesModel.title
         cell.textInNoteItemCell.text = notesModel.subText
         cell.cellTimeLabel.text = notesModel.time
@@ -99,13 +105,15 @@ class NoteItemViewController: UIViewController,UITableViewDelegate, UITableViewD
                             cell!.transform = .identity
                         }
                     })
+       //print(notesItemsArray[indexPath.row].title!)
        performSegue(withIdentifier: "NoteItemPressed", sender: self)
-       print(indexPath.row)
+       //print(indexPath.row)
         
     }
     
     
 
+    //MARK: - Code for Tab Bar
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         
         if item.title == "New Notes" {
@@ -116,6 +124,8 @@ class NoteItemViewController: UIViewController,UITableViewDelegate, UITableViewD
         
     }
     
+    //MARK: - Code overriding Segue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "NewNotesPressed" {
             if let notesVC = segue.destination as? NotesViewController {
@@ -124,10 +134,17 @@ class NoteItemViewController: UIViewController,UITableViewDelegate, UITableViewD
         }
         else if segue.identifier == "NoteItemPressed" {
             let newDestinationVC = segue.destination as! NotesViewController
-            
+//            if let indexPath = tableView.indexPathForSelectedRow {
+//                newDestinationVC.titleLabel.text = notesItemsArray[indexPath.row].title
+//                newDestinationVC.textViewText.text = notesItemsArray[indexPath.row].subText
+//            } else {
+//                print("indexPath not found")
+//            }
             if let indexPath = tableView.indexPathForSelectedRow {
+                //print("This is the indexPath \(indexPath)")
+                newDestinationVC.NoteItemIndex = indexPath.row
                 newDestinationVC.NoteItemSelectedCategory = notesItemsArray[indexPath.row]
-                //newDestinationVC.loadItems()
+                
             }
             
         }
@@ -135,9 +152,14 @@ class NoteItemViewController: UIViewController,UITableViewDelegate, UITableViewD
     
     
     
+    //MARK: - Delegate Method
     
     func didUpdateData(notesModel: NotesModel) {
-        //noteItemArray.append(notesModel)
+        
+        //print("The index is \(index)")
+        
+//        print("The title is \(notesModel.title)")
+//        print("The subText is \(notesModel.subText)")
         
         let noteItems = NoteItems(context: context)
         noteItems.title = notesModel.title
@@ -145,45 +167,68 @@ class NoteItemViewController: UIViewController,UITableViewDelegate, UITableViewD
         noteItems.time = notesModel.date
         noteItems.parentFolder = selectedCategory
         
-        saveItems()
         
+        
+        saveItems()
         loadItems()
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData() // Reload the table view on the main thread
+        }
+        
     }
     
+    func updatedNotes(index: Int, title: String, subText: String, date: String) {
+        print(index)
+        print(title)
+        print(subText)
+        print(date)
+    }
+    
+    
+    
+    //MARK: - CoreData saving items
     
     func saveItems() {
         do {
             try context.save()
-            print("NoteItem Data saved Successfully")
+            //print("NoteItem Data saved Successfully")
         } catch {
             print("There was an error saving your data \(error)")
         }
     }
     
     
+    //MARK: - CoreData Loading items
+    
     func loadItems() {
         let request: NSFetchRequest<NoteItems> = NoteItems.fetchRequest()
-        
+
+
         if let categoryName = selectedCategory?.name {
+            //print("getting names for noteItems")
             let predicate = NSPredicate(format: "parentFolder.name MATCHES %@", categoryName)
             request.predicate = predicate
         } else {
-            print("error")
-            // Handle the case where selectedCategory or selectedCategory.name is nil
+            print("error loading noteItems")
+
         }
-        //let predicate = NSPredicate(format: "parentFolder.name MATCHES %@", selectedCategory!.name!)
-        
-        
-        
+
+
         do {
-            notesItemsArray = try context.fetch(request)//we have to speak to the context before we can access the persistent contiainer
-            print(noteItemArray.count)
-            self.tableView.reloadData()
-            
+            let fetchedItems = try context.fetch(request)
+            notesItemsArray = fetchedItems// Reverse the array
+
+            print("The number of items in NoteItemArray is \(notesItemsArray.count)")
+
+
         } catch {
             print("Error fetching your data from context \(error)")
         }
-        
+
     }
+    
+    
+    
     
 }
